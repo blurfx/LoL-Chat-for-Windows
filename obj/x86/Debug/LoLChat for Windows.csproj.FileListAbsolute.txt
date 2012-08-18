@@ -1,0 +1,20 @@
+C:\Users\DevBird\documents\visual studio 2010\Projects\LoLChat for Windows\bin\Debug\LoLChat for Windows.exe
+C:\Users\DevBird\documents\visual studio 2010\Projects\LoLChat for Windows\bin\Debug\LoLChat for Windows.pdb
+C:\Users\DevBird\documents\visual studio 2010\Projects\LoLChat for Windows\bin\Debug\jabber-net.dll
+C:\Users\DevBird\documents\visual studio 2010\Projects\LoLChat for Windows\bin\Debug\muzzle.dll
+C:\Users\DevBird\documents\visual studio 2010\Projects\LoLChat for Windows\bin\Debug\zlib.net.dll
+C:\Users\DevBird\documents\visual studio 2010\Projects\LoLChat for Windows\bin\Debug\netlib.Dns.dll
+C:\Users\DevBird\documents\visual studio 2010\Projects\LoLChat for Windows\bin\Debug\jabber-net.pdb
+C:\Users\DevBird\documents\visual studio 2010\Projects\LoLChat for Windows\bin\Debug\muzzle.pdb
+C:\Users\DevBird\documents\visual studio 2010\Projects\LoLChat for Windows\bin\Debug\muzzle.xml
+C:\Users\DevBird\documents\visual studio 2010\Projects\LoLChat for Windows\bin\Debug\netlib.Dns.pdb
+C:\Users\DevBird\documents\visual studio 2010\Projects\LoLChat for Windows\bin\Debug\netlib.Dns.xml
+C:\Users\DevBird\documents\visual studio 2010\Projects\LoLChat for Windows\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\DevBird\documents\visual studio 2010\Projects\LoLChat for Windows\obj\x86\Debug\LoLChat_for_Windows.frmMain.resources
+C:\Users\DevBird\documents\visual studio 2010\Projects\LoLChat for Windows\obj\x86\Debug\LoLChat_for_Windows.FrmChat.resources
+C:\Users\DevBird\documents\visual studio 2010\Projects\LoLChat for Windows\obj\x86\Debug\LoLChat_for_Windows.Properties.Resources.resources
+C:\Users\DevBird\documents\visual studio 2010\Projects\LoLChat for Windows\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\DevBird\documents\visual studio 2010\Projects\LoLChat for Windows\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\DevBird\documents\visual studio 2010\Projects\LoLChat for Windows\obj\x86\Debug\LoLChat for Windows.exe
+C:\Users\DevBird\documents\visual studio 2010\Projects\LoLChat for Windows\obj\x86\Debug\LoLChat for Windows.pdb
+C:\Users\DevBird\documents\visual studio 2010\Projects\LoLChat for Windows\bin\Debug\LoLChat for Windows.exe.config
