@@ -122,13 +122,7 @@ namespace LoLChat_for_Windows
                 "</rankedWins><rankedLosses>" + digitStatus[3] + "</rankedLosses><rankedRating>" + digitStatus[4] + "</rankedRating><statusMsg>"
             + Properties.Settings.Default.statMsg + "</statusMsg><gameStatus>outOfGame</gameStatus><tier>PLATINUM</tier></body>",
                 null, 0);
-            int i;
-            for (i = 0; i < 5; i++)
-            {
-                Console.WriteLine( "<body><profileIcon>668</profileIcon><level>" + digitStatus[0] + "</level><wins>" + digitStatus[1] + "</wins><leaves>0</leaves><rankedWins>" + digitStatus[2] + 
-                "</rankedWins><rankedLosses>" + digitStatus[3] + "</rankedLosses><rankedRating>" + digitStatus[4] + "</rankedRating><statusMsg>"
-            + Properties.Settings.Default.statMsg + "</statusMsg><gameStatus>outOfGame</gameStatus><tier>PLATINUM</tier></body>");
-            }
+
             fRoster.ExpandAll();
             fRoster.Nodes[0].EnsureVisible();
 
