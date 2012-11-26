@@ -18,3 +18,4 @@ C:\Users\DevBird\documents\visual studio 2010\Projects\LoLChat for Windows\obj\x
 C:\Users\DevBird\documents\visual studio 2010\Projects\LoLChat for Windows\obj\x86\Debug\LoLChat for Windows.exe
 C:\Users\DevBird\documents\visual studio 2010\Projects\LoLChat for Windows\obj\x86\Debug\LoLChat for Windows.pdb
 C:\Users\DevBird\documents\visual studio 2010\Projects\LoLChat for Windows\bin\Debug\LoLChat for Windows.exe.config
+C:\Users\DevBird\Documents\Visual Studio 2010\Projects\LoLChat for Windows\obj\x86\Debug\LoLChat_for_Windows.FrmSetting.resources

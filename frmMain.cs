@@ -21,6 +21,7 @@ namespace LoLChat_for_Windows
         int chatCount = -1;
         Hashtable chatIndex = new Hashtable();
 
+        FrmSetting frmSetting;
         #region Window Flashing API Stuff
 
         private const UInt32 FLASHW_STOP = 0; //Stop flashing. The system restores the window to its original state.
@@ -43,7 +44,7 @@ namespace LoLChat_for_Windows
         [DllImport("user32.dll")]
         private static extern bool FlashWindowEx(ref FLASHWINFO pwfi);
 
-
+        
         public static void FlashWindow(Form win, UInt32 count = UInt32.MaxValue)
         {
             //Don't flash if the window is active
@@ -76,13 +77,10 @@ namespace LoLChat_for_Windows
         }
 
         #endregion
-
-
-
+        
         public frmMain()
         {
             InitializeComponent();
-
         }
 
 
@@ -112,11 +110,25 @@ namespace LoLChat_for_Windows
 
         void rm_OnRosterEnd(object sender)
         {
+            string[] digitStatus = {"","","","",""};
             fRoster.EndUpdate();
+
+            if (Properties.Settings.Default.digitStats != "")
+                digitStatus = Properties.Settings.Default.digitStats.Split('|');
+            
             jabberClient1.Presence(jabber.protocol.client.PresenceType.available,
                 //"<body><level>9001</level><wins>9001</wins><leaves>0</leaves><rankedWins>218</rankedWins><rankedLosses>55</rankedLosses><rankedRating>2888</rankedRating><<gameStatus>outOfGame</gameStatus></body>",
-                "<body><profileIcon>668</profileIcon><level>-9999</level><wins>9001</wins><leaves>0</leaves><queueType>RANKED_SOLO_5x5</queueType><rankedWins>218</rankedWins><rankedLosses>55</rankedLosses><rankedRating>2888</rankedRating><statusMsg>using LoL Chat for Window</statusMsg><skinname>Diana</skinname><isObservable>ALL</isObservable><gameQueueType>RANKED_SOLO_5x5</gameQueueType><gameStatus>inGame</gameStatus><timeStamp>824882400</timeStamp><tier>PLATINUM</tier></body>",
+                "<body><profileIcon>668</profileIcon><level>" + digitStatus[0] + "</level><wins>" + digitStatus[1] + "</wins><leaves>0</leaves><queueType>RANKED_SOLO_5x5</queueType><rankedWins>" + digitStatus[2] + 
+                "</rankedWins><rankedLosses>" + digitStatus[3] + "</rankedLosses><rankedRating>" + digitStatus[4] + "</rankedRating><statusMsg>"
+            + Properties.Settings.Default.statMsg + "</statusMsg><gameStatus>outOfGame</gameStatus><tier>PLATINUM</tier></body>",
                 null, 0);
+            int i;
+            for (i = 0; i < 5; i++)
+            {
+                Console.WriteLine( "<body><profileIcon>668</profileIcon><level>" + digitStatus[0] + "</level><wins>" + digitStatus[1] + "</wins><leaves>0</leaves><rankedWins>" + digitStatus[2] + 
+                "</rankedWins><rankedLosses>" + digitStatus[3] + "</rankedLosses><rankedRating>" + digitStatus[4] + "</rankedRating><statusMsg>"
+            + Properties.Settings.Default.statMsg + "</statusMsg><gameStatus>outOfGame</gameStatus><tier>PLATINUM</tier></body>");
+            }
             fRoster.ExpandAll();
             fRoster.Nodes[0].EnsureVisible();
 
@@ -124,8 +136,13 @@ namespace LoLChat_for_Windows
             {
                 Properties.Settings.Default.user_id = txtID.Text;
                 Properties.Settings.Default.password = txtPW.Text;
+                Properties.Settings.Default.lastServ = cbServer.SelectedIndex;
                 Properties.Settings.Default.Save();
             }
+
+            tray.Text = "Connected : " + cbServer.Text + " Server";
+            tray.Visible = true;
+
         }
 
         void rm_OnRosterItem(object sender, Item ri)
@@ -165,6 +182,8 @@ namespace LoLChat_for_Windows
             if (txtID.Text == "" || txtPW.Text == "") return;
             jabberClient1.User = txtID.Text;
             jabberClient1.Password = "AIR_" + txtPW.Text;
+
+            jabberClient1.NetworkHost = "chat." + retChatServer(cbServer.SelectedIndex) +".lol.riotgames.com";
             jabberClient1.Connect();
 
             panLogin.Visible = false;
@@ -190,6 +209,27 @@ namespace LoLChat_for_Windows
             return true;
         }
 
+        private string retChatServer(int parm)
+        {
+            switch (parm)
+            {
+                case 0:
+                    return "kr";
+                case 1:
+                    return "na1";
+                case 2:
+                    return "eu";
+                case 3:
+                    return "eun1";
+                case 4:
+                    return "br";
+                case 5:
+                    return "tr";
+                default:
+                    return "";
+            }
+
+        }
         private void jabberClient1_OnAuthError(object sender, System.Xml.XmlElement rp)
         {
 
@@ -198,7 +238,7 @@ namespace LoLChat_for_Windows
                 txtID.Text = "";
                 txtPW.Text = "";
                 panLogin.Visible = true;
-                this.Height = 133;
+                this.Height = 144;
                 txtID.Focus();
             
         }
@@ -213,13 +253,28 @@ namespace LoLChat_for_Windows
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            cbServer.SelectedIndex = 0;
             if (Properties.Settings.Default.user_id != "" && Properties.Settings.Default.password != "")
             {
                 txtID.Text = Properties.Settings.Default.user_id;
                 txtPW.Text = Properties.Settings.Default.password;
+                cbServer.SelectedIndex = Properties.Settings.Default.lastServ;
                 btLogin_Click(sender, e);
             }
         }
+
+        #region ContextMenu Item Action
+        private void tsmSetting_Click(object sender, EventArgs e)
+        {
+            frmSetting = new FrmSetting(this);
+            frmSetting.Show();
+        }
+
+        private void tsmExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        #endregion
 
     }
 }

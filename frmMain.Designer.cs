@@ -34,6 +34,7 @@
             this.fRoster = new muzzle.RosterTree();
             this.il = new System.Windows.Forms.ImageList(this.components);
             this.panLogin = new System.Windows.Forms.Panel();
+            this.cbServer = new System.Windows.Forms.ComboBox();
             this.chkRemId = new System.Windows.Forms.CheckBox();
             this.lblVer = new System.Windows.Forms.Label();
             this.txtPW = new System.Windows.Forms.TextBox();
@@ -41,7 +42,14 @@
             this.btLogin = new System.Windows.Forms.Button();
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
+            this.tray = new System.Windows.Forms.NotifyIcon(this.components);
+            this.conMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmDev = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmSetting = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmExit = new System.Windows.Forms.ToolStripMenuItem();
             this.panLogin.SuspendLayout();
+            this.conMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // jabberClient1
@@ -52,7 +60,7 @@
             this.jabberClient1.InvokeControl = this;
             this.jabberClient1.KeepAlive = 10F;
             this.jabberClient1.LocalCertificate = null;
-            this.jabberClient1.NetworkHost = "chat.kr.lol.riotgames.com";
+            this.jabberClient1.NetworkHost = "chat.na.lol.riotgames.com";
             this.jabberClient1.Password = "";
             this.jabberClient1.Port = 5223;
             this.jabberClient1.Resource = "RivenOPdevBird";
@@ -78,7 +86,7 @@
             this.fRoster.SelectedImageIndex = 0;
             this.fRoster.ShowLines = false;
             this.fRoster.ShowRootLines = false;
-            this.fRoster.Size = new System.Drawing.Size(347, 105);
+            this.fRoster.Size = new System.Drawing.Size(347, 116);
             this.fRoster.Sorted = true;
             this.fRoster.StatusColor = System.Drawing.Color.Teal;
             this.fRoster.TabIndex = 0;
@@ -102,6 +110,7 @@
             // panLogin
             // 
             this.panLogin.BackColor = System.Drawing.Color.White;
+            this.panLogin.Controls.Add(this.cbServer);
             this.panLogin.Controls.Add(this.chkRemId);
             this.panLogin.Controls.Add(this.lblVer);
             this.panLogin.Controls.Add(this.txtPW);
@@ -109,15 +118,33 @@
             this.panLogin.Controls.Add(this.btLogin);
             this.panLogin.Controls.Add(this.txtID);
             this.panLogin.Controls.Add(this.lblID);
+            this.panLogin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panLogin.Location = new System.Drawing.Point(0, 0);
             this.panLogin.Name = "panLogin";
-            this.panLogin.Size = new System.Drawing.Size(347, 107);
+            this.panLogin.Size = new System.Drawing.Size(347, 116);
             this.panLogin.TabIndex = 1;
+            // 
+            // cbServer
+            // 
+            this.cbServer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbServer.FormattingEnabled = true;
+            this.cbServer.Items.AddRange(new object[] {
+            "Korea",
+            "NA",
+            "EU West",
+            "EU Nordic/East",
+            "Brazil",
+            "Turkey"});
+            this.cbServer.Location = new System.Drawing.Point(18, 87);
+            this.cbServer.Name = "cbServer";
+            this.cbServer.Size = new System.Drawing.Size(121, 20);
+            this.cbServer.TabIndex = 6;
+            this.cbServer.TabStop = false;
             // 
             // chkRemId
             // 
             this.chkRemId.AutoSize = true;
-            this.chkRemId.Location = new System.Drawing.Point(149, 85);
+            this.chkRemId.Location = new System.Drawing.Point(149, 89);
             this.chkRemId.Name = "chkRemId";
             this.chkRemId.Size = new System.Drawing.Size(88, 16);
             this.chkRemId.TabIndex = 5;
@@ -127,11 +154,11 @@
             // lblVer
             // 
             this.lblVer.AutoSize = true;
-            this.lblVer.Location = new System.Drawing.Point(270, 90);
+            this.lblVer.Location = new System.Drawing.Point(266, 101);
             this.lblVer.Name = "lblVer";
-            this.lblVer.Size = new System.Drawing.Size(75, 12);
+            this.lblVer.Size = new System.Drawing.Size(78, 12);
             this.lblVer.TabIndex = 4;
-            this.lblVer.Text = "Version 0.1b";
+            this.lblVer.Text = "Version 0.2.1";
             // 
             // txtPW
             // 
@@ -153,7 +180,7 @@
             // 
             // btLogin
             // 
-            this.btLogin.Location = new System.Drawing.Point(245, 27);
+            this.btLogin.Location = new System.Drawing.Point(243, 27);
             this.btLogin.Name = "btLogin";
             this.btLogin.Size = new System.Drawing.Size(77, 54);
             this.btLogin.TabIndex = 3;
@@ -177,11 +204,52 @@
             this.lblID.TabIndex = 0;
             this.lblID.Text = "ID : ";
             // 
+            // tray
+            // 
+            this.tray.ContextMenuStrip = this.conMenu;
+            this.tray.Icon = ((System.Drawing.Icon)(resources.GetObject("tray.Icon")));
+            // 
+            // conMenu
+            // 
+            this.conMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmDev,
+            this.toolStripSeparator1,
+            this.tsmSetting,
+            this.tsmExit});
+            this.conMenu.Name = "conMenu";
+            this.conMenu.Size = new System.Drawing.Size(164, 76);
+            // 
+            // tsmDev
+            // 
+            this.tsmDev.Enabled = false;
+            this.tsmDev.Name = "tsmDev";
+            this.tsmDev.Size = new System.Drawing.Size(163, 22);
+            this.tsmDev.Text = "개발자 : DevBird";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(160, 6);
+            // 
+            // tsmSetting
+            // 
+            this.tsmSetting.Name = "tsmSetting";
+            this.tsmSetting.Size = new System.Drawing.Size(163, 22);
+            this.tsmSetting.Text = "설정(&S)";
+            this.tsmSetting.Click += new System.EventHandler(this.tsmSetting_Click);
+            // 
+            // tsmExit
+            // 
+            this.tsmExit.Name = "tsmExit";
+            this.tsmExit.Size = new System.Drawing.Size(163, 22);
+            this.tsmExit.Text = "종료(&X)";
+            this.tsmExit.Click += new System.EventHandler(this.tsmExit_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(347, 105);
+            this.ClientSize = new System.Drawing.Size(347, 116);
             this.Controls.Add(this.panLogin);
             this.Controls.Add(this.fRoster);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -193,6 +261,7 @@
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.panLogin.ResumeLayout(false);
             this.panLogin.PerformLayout();
+            this.conMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -200,7 +269,6 @@
         #endregion
 
         private muzzle.RosterTree fRoster;
-        private jabber.client.JabberClient jabberClient1;
         private System.Windows.Forms.ImageList il;
         private System.Windows.Forms.Panel panLogin;
         private System.Windows.Forms.TextBox txtPW;
@@ -210,6 +278,14 @@
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.Label lblVer;
         private System.Windows.Forms.CheckBox chkRemId;
+        private System.Windows.Forms.ComboBox cbServer;
+        private System.Windows.Forms.NotifyIcon tray;
+        private System.Windows.Forms.ContextMenuStrip conMenu;
+        private System.Windows.Forms.ToolStripMenuItem tsmDev;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem tsmSetting;
+        private System.Windows.Forms.ToolStripMenuItem tsmExit;
+        public jabber.client.JabberClient jabberClient1;
     }
 }
 
